@@ -13,7 +13,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    EditText name, loc, desig,delet,sear;
+    EditText name;
+    EditText loc;
+    EditText desig;
+    EditText delet;
+    EditText sear;
     Button saveBtn,deletebtn,searchBtn;
     Intent intent;
     @Override
@@ -28,46 +32,42 @@ public class MainActivity extends AppCompatActivity {
         loc = (EditText)findViewById(R.id.txtLocation);
         desig = (EditText)findViewById(R.id.txtDesignation);
         sear = (EditText)findViewById(R.id.search);
+        saveBtn = (Button)findViewById(R.id.btnSave);
         searchBtn = (Button)findViewById(R.id.searchBtn);
         deletebtn = (Button)findViewById(R.id.deleteBtn);
-        deletebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        saveBtn.setOnClickListener(new View.OnClickListener()
+        {@Override
+           public void onClick(View v) {
+            String username = name.getText().toString()+"\n";
+            String location = loc.getText().toString();
+            String designation = desig.getText().toString();
+            DbHandler dbHandler = new DbHandler(MainActivity.this);
+            dbHandler.insertUserDetails(username,location,designation);
+            intent = new Intent(MainActivity.this,DetailsActivity.class);
+            startActivity(intent);
+
 
             }
         });
-
-        saveBtn = (Button)findViewById(R.id.btnSave);
-        saveBtn.setOnClickListener(new View.OnClickListener()
-
-        {
-
-
+         deletebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = name.getText().toString()+"\n";
                 String location = loc.getText().toString();
                 String designation = desig.getText().toString();
                 DbHandler dbHandler = new DbHandler(MainActivity.this);
-                dbHandler.insertUserDetails(username,location,designation);
+                dbHandler.DeleteUser(username,location,designation);
                 intent = new Intent(MainActivity.this,DetailsActivity.class);
                 startActivity(intent);
-                Toast.makeText(getApplicationContext(), "Details Inserted Successfully",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Details Deleted Successfully",Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
     }
 
-    public void deleteBtn (View view) {
 
-     String DeleteUser = delet.getText().toString();
-     if(DeleteUser.isEmpty()){
-         Toast.makeText(getApplicationContext(), "Delete unsuccessfully",Toast.LENGTH_SHORT).show();
-     }
-     else{
-
-
-
-     }
     }
-}
+
 

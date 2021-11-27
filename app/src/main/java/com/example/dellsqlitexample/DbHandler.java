@@ -81,10 +81,10 @@ public class DbHandler extends SQLiteOpenHelper{
         return  userList;
     }
     // Delete User Details
-    public void DeleteUser(int userid){
+    public void DeleteUser( String username,String location,String Designation){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.delete(TABLE_Users, KEY_ID+" = ?",new String[]{String.valueOf(userid)});
+        db.delete(TABLE_Users, KEY_ID+" = ?",new String[]{String.valueOf(username)});
         db.close();
     }
     // Update User Details
