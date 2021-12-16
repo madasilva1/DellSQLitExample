@@ -94,6 +94,7 @@ public class DbHandler extends SQLiteOpenHelper{
         cVals.put(KEY_LOC, location);
         cVals.put(KEY_DESG, designation);
         int count = db.update(TABLE_Users, cVals, KEY_ID+" = ?",new String[]{String.valueOf(id)});
+        db.close();
         return  count;
     }
 }

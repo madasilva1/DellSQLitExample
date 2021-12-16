@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         sear = (EditText) findViewById(R.id.search);
         updatehBtn = (Button) findViewById(R.id.updatehBtn);
         deletebtn = (Button) findViewById(R.id.deleteBtn);
+        saveBtn = (Button) findViewById(R.id.btnSave);
+
         deletebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,10 +43,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        saveBtn = (Button) findViewById(R.id.btnSave);
         saveBtn.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 String username = name.getText().toString() + "\n";
@@ -57,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Details Inserted Successfully", Toast.LENGTH_SHORT).show();
             }
         });
+        
     }
 
 
